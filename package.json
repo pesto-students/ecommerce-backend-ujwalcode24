@@ -1,0 +1,31 @@
+{
+  "name": "ecommerce-backend-ujwalcode24",
+  "version": "1.0.0",
+  "description": "This is a barebones repository. Please contact the instructor on how to proceed ahead. You should replace this page with more instructions once you've finalised what to do.",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node ./app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pesto-students/ecommerce-backend-ujwalcode24.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pesto-students/ecommerce-backend-ujwalcode24/issues"
+  },
+  "homepage": "https://github.com/pesto-students/ecommerce-backend-ujwalcode24#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
