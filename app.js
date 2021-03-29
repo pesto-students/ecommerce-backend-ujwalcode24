@@ -28,7 +28,6 @@ mongoose.connection.on('connected', () => {
 const app = express();
 
 // linking user routes
-const test = require('./routes/test');
 const auth = require('./routes/auth');
 const product = require('./routes/product');
 
@@ -45,7 +44,6 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Setting up test routes
-app.use('/__test', test);
 app.use('/user', auth);
 app.use('/product', product);
 

@@ -1,10 +1,12 @@
 // Validation
 const Joi = require('joi');
+const { ROLE } = require('./role');
 
 // Register Validation
 const registerValidation = (data) => {
   const schema = Joi.object({
     name: Joi.string().min(6).required(),
+    role: Joi.string().min(4).valid(ROLE.USER, ROLE.ADMIN).uppercase(),
     email: Joi.string().required().email(),
     password: Joi.string().min(6).required(),
   });
