@@ -1,12 +1,18 @@
 const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
 const cors = require('cors');
+const dotenv = require('dotenv');
+
 const mongoose = require('mongoose');
+
+const path = require('path');
 const config = require('./config/database');
 
+dotenv.config();
+
 // MOGODB Connection
-mongoose.connect(config.database);
+mongoose.connect(config.database, { useNewUrlParser: true }, () => {
+  console.log('db connection established');
+});
 
 // DB on Successful Connection
 mongoose.connection.on('connected', () => {
@@ -14,15 +20,17 @@ mongoose.connection.on('connected', () => {
 });
 
 // DB on Error Connection
-mongoose.connection.on('connected', () => {
-  console.log('Connected to the database', config.database);
-});
+// mongoose.connection.on('connected', () => {
+//   console.log('Connected to the database', config.database);
+// });
 
 // Creating express application
 const app = express();
 
 // linking user routes
 const test = require('./routes/test');
+const auth = require('./routes/auth');
+const product = require('./routes/product');
 
 // Port Number
 const port = process.env.PORT || 8080;
@@ -31,13 +39,15 @@ const port = process.env.PORT || 8080;
 app.use(cors());
 
 // MIDDLEWARE: body parser - parses incomming request body
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Setting up test routes
 app.use('/__test', test);
+app.use('/user', auth);
+app.use('/product', product);
 
 // Index route
 app.get('/', (req, res) => {
