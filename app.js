@@ -10,9 +10,13 @@ const config = require('./config/database');
 dotenv.config();
 
 // MOGODB Connection
-mongoose.connect(config.database, { useNewUrlParser: true }, () => {
-  console.log('db connection established');
-});
+mongoose.connect(
+  config.database,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => {
+    console.log('db connection established');
+  }
+);
 
 // DB on Successful Connection
 mongoose.connection.on('connected', () => {
